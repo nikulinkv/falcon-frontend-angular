@@ -1,0 +1,36 @@
+<div class="links">
+  <form class="example-form" (ngSubmit)="createBlock()">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Выберите блок</mat-label>
+      <input type="text" matInput [formControl]="blockControl" [matAutocomplete]="blocks">
+      <mat-autocomplete #blocks="matAutocomplete" [displayWith]="displayFn">
+        @for (option of blockFilteredOptions | async; track option) {
+          <mat-option [value]="option">{{option.name}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Выберите компанию</mat-label>
+      <input type="text" matInput [formControl]="companyControl" [matAutocomplete]="companies">
+      <mat-autocomplete #companies="matAutocomplete" [displayWith]="displayFn">
+        @for (option of companyFilteredOptions | async; track option) {
+          <mat-option [value]="option">{{option.name}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">СФОРМИРОВАТЬ</button>
+  </form>
+
+<!--  <div *ngFor="let block of _appService.allBlocks()">-->
+<!--    &lt;!&ndash;  <p>{{b.code}}</p>&ndash;&gt;-->
+<!--    <a routerLink="blocks/{{block.code}}" routerLinkActive ariaCurrentWhenActive="page">{{block.name}}</a>-->
+<!--  </div>-->
+</div>
+<div class="blocks">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <app-block></app-block>
+  <router-outlet></router-outlet>
+</div>
+
+

@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+}
+
+.links {
+  flex: 1 1 25%;
+}
+
+.example-form {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+
+  button {
+    height: 56px;
+    width: 300px;
+  }
+}
+
+.example-full-width {
+  width: 500px;
+}
+
+.blocks {
+  flex: 1 1 100%
+}
