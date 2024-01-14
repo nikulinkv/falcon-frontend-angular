@@ -59,9 +59,10 @@ export class MainComponent implements OnInit {
 
   createBlock() {
     // @ts-ignore
-    this._router.navigate(['blocks', this.companyControl.getRawValue()?.code, this.blockControl.getRawValue().path.split('/')[1], this.blockControl.getRawValue().order])
+    const currentUrl = `blocks/${this.companyControl.getRawValue()?.code}/${this.blockControl.getRawValue().path.split('/')[1]}/${this.blockControl.getRawValue().order}`
+    this._router.navigateByUrl('/', {skipLocationChange: true})
       .then(() => {
-        this._router.navigate([BlockComponent])
+        this._router.navigate([currentUrl])
       })
   }
 }
