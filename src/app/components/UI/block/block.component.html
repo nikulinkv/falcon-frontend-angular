@@ -1,5 +1,35 @@
 
 
-<p *ngIf="activeBlock">{{activeBlock | json}}</p>
+<mat-card class="card">
+  <mat-card-content>
+    @if(isLoading) {
+      <mat-spinner class="spinner"></mat-spinner>
+    } @else {
+      <div class="column-wrap">
+        <div class="column-left">
+          <div class="column-head">
+          <span>{{ activeBlock?.title }}
+            <mat-icon color="primary">help</mat-icon></span>
+            <h6>7</h6>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="LeftChart">{{ leftChart }}</canvas>
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="column-head">
+            <span>Исторический рост прибыли <mat-icon color="primary">help</mat-icon></span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="RightChart">{{ rightChart }}</canvas>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="activeBlock">{{ activeBlock | json }}</p>
+    }
+  </mat-card-content>
+</mat-card>
+
+
 
 

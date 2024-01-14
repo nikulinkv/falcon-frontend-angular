@@ -27,9 +27,10 @@ export class AppService {
     return this._http.get(`${this.url}/api/companies`)
   }
 
-  async getActiveBlock(company: string, tab: string, indicator: string) {
-    let blocks = await lastValueFrom(this._http.get(`${this.url}/api/blocks/${company}/${tab}`)) as Array<any>
+  async getActiveBlock(company: string, tab: string, order: string) {
+    const block = await lastValueFrom(this._http.get(`${this.url}/api/blocks/${company}/${tab}/${order}`)) as Array<any>
+    this.activeBlock.set(block[0])
 
-    this.activeBlock.set(blocks.filter(block => block.code == indicator)[0])
+    return block[0]
   }
 }

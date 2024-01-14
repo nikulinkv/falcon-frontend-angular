@@ -4,7 +4,7 @@ import {BlockComponent} from "./components/UI/block/block.component";
 
 export const routes: Routes = [
   {
-    path: 'blocks/:company/:tab/:indicator',
+    path: 'blocks/:company/:tab/:order',
     component: BlockComponent,
   }
 ];

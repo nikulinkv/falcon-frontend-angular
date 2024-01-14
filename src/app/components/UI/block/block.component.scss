@@ -1,0 +1,66 @@
+.card {
+  padding: 45px 50px 29px;
+  width: 705px;
+  height: 589px;
+}
+
+.column-head {
+  min-height: 60px;
+}
+
+.column-wrap {
+  display: flex;
+  gap: 20px;
+
+  .column-left {
+    width: 50%;
+
+    .column-head {
+      display: flex;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+
+      h6 {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 140%; /* 56px */
+        letter-spacing: 0.44px;
+        margin: 0 0 0 60px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .column-right {
+    width: 50%;
+
+    .column-head {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 140%; /* 22.4px */
+        margin: 0;
+      }
+    }
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}

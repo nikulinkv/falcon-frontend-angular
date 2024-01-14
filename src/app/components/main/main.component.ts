@@ -3,6 +3,7 @@ import {AppService} from "../../services/app.service";
 import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import {Router} from "@angular/router";
+import {BlockComponent} from "../UI/block/block.component";
 
 @Component({
   selector: 'app-main',
@@ -19,8 +20,6 @@ export class MainComponent implements OnInit {
   companyControl = new FormControl('')
   companyFilteredOptions!: Observable<any[]>
   companyOptions: any[] = []
-
-  isLoading = false
 
   constructor(
   ) {
@@ -59,11 +58,10 @@ export class MainComponent implements OnInit {
   }
 
   createBlock() {
-    this._appService.activeBlock.set('')
-    this.isLoading = true
     // @ts-ignore
-    console.log(this.blockControl.value, this.companyControl.value!.code)
-    // @ts-ignore
-    this._appService.getActiveBlock(this.companyControl.value!.code, this.blockControl.value.path.split('/')[1], this.blockControl.value!.code).then(() => this.isLoading = false)
+    this._router.navigate(['blocks', this.companyControl.getRawValue()?.code, this.blockControl.getRawValue().path.split('/')[1], this.blockControl.getRawValue().order])
+      .then(() => {
+        this._router.navigate([BlockComponent])
+      })
   }
 }

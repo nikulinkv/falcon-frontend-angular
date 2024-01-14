@@ -2,10 +2,12 @@
   display: flex;
   padding: 16px;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .links {
-  flex: 1 1 25%;
+  flex: 1 1 60px;
 }
 
 .example-form {
@@ -24,5 +26,6 @@
 }
 
 .blocks {
-  flex: 1 1 100%
+  flex: 1 1 100%;
+  position: relative;
 }

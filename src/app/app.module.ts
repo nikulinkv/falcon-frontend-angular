@@ -14,6 +14,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {NgChartsModule} from "ng2-charts";
 
 export function initializeUserService(appService: AppService) {
     return async () => await appService.init()
@@ -36,7 +39,10 @@ export function initializeUserService(appService: AppService) {
     ReactiveFormsModule,
     MatButtonModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatIconModule,
+    NgChartsModule
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initializeUserService, deps: [AppService], multi: true}
