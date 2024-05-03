@@ -1,8 +1,8 @@
 <div class="links">
-  <form class="example-form" (ngSubmit)="createBlock()">
+  <form class="example-form" [formGroup]="searchForm" (ngSubmit)="getIndicatorData()">
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Выберите компанию</mat-label>
-      <input type="text" matInput [formControl]="companyControl" [matAutocomplete]="companies">
+      <input type="text" matInput formControlName="company" [matAutocomplete]="companies">
       <mat-autocomplete #companies="matAutocomplete" [displayWith]="displayFn">
         @for (option of companyFilteredOptions | async; track option) {
           <mat-option [value]="option">{{option.name}}</mat-option>
@@ -12,7 +12,7 @@
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Выберите блок</mat-label>
-      <input type="text" matInput [formControl]="blockControl" [matAutocomplete]="blocks">
+      <input type="text" matInput formControlName="indicator" [matAutocomplete]="blocks">
       <mat-autocomplete #blocks="matAutocomplete" [displayWith]="displayFn">
         @for (option of blockFilteredOptions | async; track option) {
           <mat-option [value]="option">{{option.name}}</mat-option>
@@ -20,17 +20,22 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <button mat-flat-button color="primary">СФОРМИРОВАТЬ</button>
+    <button mat-flat-button color="primary">
+      <div class="spinner-button" style="">
+        <mat-spinner *ngIf="isLoading" color="warn" diameter="20" style=""></mat-spinner>
+        СФОРМИРОВАТЬ
+      </div>
+    </button>
   </form>
-
-<!--  <div *ngFor="let block of _appService.allBlocks()">-->
-<!--    &lt;!&ndash;  <p>{{b.code}}</p>&ndash;&gt;-->
-<!--    <a routerLink="blocks/{{block.code}}" routerLinkActive ariaCurrentWhenActive="page">{{block.name}}</a>-->
-<!--  </div>-->
 </div>
-<div class="blocks">
 
-<!--  <app-block></app-block>-->
+<mat-card *ngIf="activeComponentTemplate">
+  <mat-card-content>
+    <ng-container *ngComponentOutlet="activeComponentTemplate; inputs: {activeComponent: activeComponent[0]}"/>
+  </mat-card-content>
+</mat-card>
+
+<div class="blocks">
   <router-outlet></router-outlet>
 </div>
 

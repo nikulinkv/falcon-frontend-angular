@@ -1,38 +1,38 @@
-import {Component, effect, inject, OnDestroy, OnInit} from '@angular/core';
-import { Router} from "@angular/router";
+import {AfterViewInit, Component, effect, inject, Input, OnInit} from '@angular/core';
+import {MatIconModule} from "@angular/material/icon";
+import {JsonPipe, NgIf} from "@angular/common";
 import {AppService} from "../../../services/app.service";
 import {Chart} from "chart.js";
 
 @Component({
-  selector: 'app-block',
-  templateUrl: './block.component.html',
-  styleUrls: ['./block.component.scss']
+  selector: 'app-speed-chart',
+  standalone: true,
+  imports: [
+    MatIconModule,
+    NgIf,
+    JsonPipe
+  ],
+  templateUrl: './speed-chart.component.html',
+  styleUrl: './speed-chart.component.scss'
 })
-export class BlockComponent implements OnInit {
+export class SpeedChartComponent implements OnInit {
   _appService = inject(AppService)
-  _router = inject(Router)
-
-  isLoading = false
-  indicator = ''
-  activeBlock!: any
 
   leftChart: any
   rightChart: any
+  @Input() activeComponent: any
+
   constructor() {
+    // effect(() => {
+    //   this.activeComponent = this._appService.activeComponent()
+    // })
   }
 
   ngOnInit() {
-    this.isLoading = true
-    const path = this._router.url.split('/').filter(Boolean)
-    this._appService.getActiveBlock(path[1], path[2], path[3])
-      .then(block => {
-        this.isLoading = false
-        this.activeBlock = block.data[0]
-        setTimeout(() => this.createChart(), 100)
-      })
+    // setTimeout(() => this.createSpeedChart(), 100)
   }
 
-  createChart() {
+  createSpeedChart() {
     const firstNeedle = {
       id: 'firstNeedle',
       afterDatasetDraw(chart: Chart<any>, args: any, options: any) {
@@ -138,18 +138,16 @@ export class BlockComponent implements OnInit {
             data: [25, 25, 25, 25],
             backgroundColor: [
               'rgba(232, 110, 68, 1)',
-              'rgba(246, 184, 36, 1)',
-              'rgba(210, 226, 65, 1)',
-              'rgba(146, 220, 135, 1)'
             ],
             borderWidth: 1,
             // @ts-ignore
             cutout: '85%',
             circumference: 180,
             rotation: 270,
+
           },
           {
-            data: [(this.activeBlock.values[0] * 10), (100 - (this.activeBlock.values[0] * 10))],
+            data: [(this.activeComponent.data[0].values[0] * 10), (100 - (this.activeComponent.data[0].values[0] * 10))],
             backgroundColor: [
               'rgba(6, 86, 159, 1)',
               'rgba(54, 162, 235, 0)',
@@ -159,10 +157,10 @@ export class BlockComponent implements OnInit {
             cutout: '85%',
             circumference: 180,
             rotation: 270,
-            firstNeedle: (this.activeBlock.values[0] * 10)
+            firstNeedle: (this.activeComponent.data[0].values[0] * 10)
           },
           {
-            data: [(this.activeBlock.values[1] * 10), (100 - (this.activeBlock.values[1] * 10))],
+            data: [(this.activeComponent.data[0].values[1] * 10), (100 - (this.activeComponent.data[0].values[1] * 10))],
             backgroundColor: [
               'rgba(93, 214, 192, 1)',
               'rgba(54, 162, 235, 0)',
@@ -173,10 +171,10 @@ export class BlockComponent implements OnInit {
             cutout: '85%',
             circumference: 180,
             rotation: 270,
-            secondNeedle: (this.activeBlock.values[1] * 10)
+            secondNeedle: (this.activeComponent.data[0].values[1] * 10)
           },
           {
-            data: [(this.activeBlock.values[2] * 10), (100 - (this.activeBlock.values[2] * 10))],
+            data: [(this.activeComponent.data[0].values[2] * 10), (100 - (this.activeComponent.data[0].values[2] * 10))],
             backgroundColor: [
               'rgba(235, 87, 131, 1)',
               'rgba(54, 162, 235, 0)',
@@ -187,7 +185,7 @@ export class BlockComponent implements OnInit {
             cutout: '85%',
             circumference: 180,
             rotation: 270,
-            thirdNeedle: (this.activeBlock.values[2] * 10)
+            thirdNeedle: (this.activeComponent.data[0].values[2] * 10)
           }
         ]
       },

@@ -1,0 +1,53 @@
+:host {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 80px;
+  gap: 60px;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+  margin-bottom: 20px;
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+
+    &__link {
+      text-decoration: none;
+      color: #06569f;;
+    }
+  }
+}
+
+.nav-menu {
+  flex: 1 1 100%;
+  justify-content: flex-end;
+  display: flex;
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    color: #222;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+
+    &.active {
+      border-bottom: 2px #06569f solid;
+      color: #06569f;
+    }
+
+    &:hover {
+      color: #06569f;
+    }
+  }
+}
+

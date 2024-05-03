@@ -1,0 +1,61 @@
+:host {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  height: calc(100% - 80px);
+  box-sizing: border-box;
+}
+
+.links {
+  flex: 1 1 60px;
+}
+
+.example-form {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+
+  button {
+    height: 56px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+  }
+}
+
+.example-full-width {
+  width: 500px;
+}
+
+.blocks {
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.mat-mdc-card {
+  width: 700px;
+  height: 600px;
+}
+
+.spinner-button {
+  display: flex;
+  gap: 20px; width: 100%;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+
+  mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+    color: #fff;
+  }
+}
+
+::ng-deep .mdc-button__label {
+  width: 100%;
+}
+
