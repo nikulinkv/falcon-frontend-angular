@@ -14,9 +14,8 @@ export class AppService {
   allCompanies: WritableSignal<Company[] | null> = signal(null)
   activeBlock = signal('')
 
-
   async init() {
-    this.allIndicator.set(await lastValueFrom(this.getAllBlocks()))
+    this.allIndicator.set(await lastValueFrom(this.getAllIndicators()))
     this.allCompanies.set(await lastValueFrom(this.getAllCompanies()))
   }
 
@@ -26,6 +25,10 @@ export class AppService {
 
   getAllCompanies() {
     return this._http.get<Company[]>(`${this.url}/api/companies`)
+  }
+
+  getAllIndicators() {
+    return this._http.get<Indicator[]>(`${this.url}/api/indicators`)
   }
 
   getActiveBlock(company: string, tab: string, order: number) {
