@@ -107,9 +107,15 @@ export class TestComponent implements OnInit {
       case 'Speed':
         this.activeComponentTemplate = SpeedChartComponent
         break
+
       case 'Number\r':
         this.activeComponentTemplate = NumberComponent
         break
+
+      default:
+        this.activeComponentTemplate = NumberComponent
+        break
+
     }
   }
 
@@ -126,7 +132,7 @@ export class TestComponent implements OnInit {
       company: this._appService.allCompanies()?.find((c: any) => c.code == this._route.snapshot.paramMap.get('company')) || null,
       indicator: this._appService.allIndicator()?.find((i: any) => i.code == this._route.snapshot.paramMap.get('indicator')) || null
     })
-
+    console.log(this.searchForm.getRawValue())
     const response = {
       company: this.searchForm.get('company')!.value!.code,
       tab: this.searchForm.get('indicator')!.value!.path.split('/')[1],

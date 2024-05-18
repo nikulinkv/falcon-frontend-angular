@@ -30,6 +30,7 @@ export class SpeedChartComponent implements OnInit {
 
   ngOnInit() {
     // setTimeout(() => this.createSpeedChart(), 100)
+    console.log(this.activeComponent)
   }
 
   createSpeedChart() {

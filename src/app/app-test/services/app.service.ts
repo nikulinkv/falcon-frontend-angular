@@ -15,7 +15,7 @@ export class AppService {
   activeBlock = signal('')
 
   async init() {
-    this.allIndicator.set(await lastValueFrom(this.getAllIndicators()))
+    this.allIndicator.set(await lastValueFrom(this.getAllBlocks()))
     this.allCompanies.set(await lastValueFrom(this.getAllCompanies()))
   }
 
