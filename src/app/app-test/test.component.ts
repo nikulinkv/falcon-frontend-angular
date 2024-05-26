@@ -14,7 +14,14 @@ import {SpeedChartComponent} from "./components/charts/speed-chart/speed-chart.c
 import {NumberComponent} from "./components/charts/number/number.component";
 import {Company, Indicator} from "./test.interface";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {GaugeChartComponent} from './components/charts/gauge/gauge.component';
+import {FusionChartsModule} from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as charts from 'fusioncharts/fusioncharts.charts';
+import * as widgets from 'fusioncharts/fusioncharts.widgets';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
+FusionChartsModule.fcRoot(FusionCharts, charts, widgets, FusionTheme);
 @Component({
   selector: 'app-test',
   standalone: true,
@@ -31,7 +38,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatCardModule,
     NgIf,
     NgComponentOutlet,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FusionChartsModule
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.scss'
@@ -105,7 +113,7 @@ export class TestComponent implements OnInit {
   getActiveBlock(component: any) {
     switch(component.type) {
       case 'Speed':
-        this.activeComponentTemplate = SpeedChartComponent
+        this.activeComponentTemplate = GaugeChartComponent
         break
 
       case 'Number\r':
